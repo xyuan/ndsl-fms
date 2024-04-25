@@ -11,14 +11,12 @@ NDSL has been used as the backend of Pace model (https://github.com/NOAA-GFDL/pa
    :caption: Contents:
 
    overview
-   ndsl
-   installation
+   users_guide
+   program_guide
+   test
+   dace
+   gt4py
    docker
-   testing
-   util/index
-   dace/index
-   gt4py/index
-
 
 Indices and tables
 ==================

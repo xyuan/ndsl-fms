@@ -11,8 +11,9 @@ Additional work is required to integrate these schemes.
    :maxdepth: 2
    :caption: Contents:
 
-   state
-   api
+   frontend
+   ir
+   backend
 
 Indices and tables
 ------------------
