@@ -1,5 +1,4 @@
-============
-Data Centric Parallel Programming (Dace)
+Dace
 ============
 
 DaCe is a parallel programming framework developed at Scalable Parallel Computing Laboratory (SPCL), DaCe is a high level intermediate representation (IR) that parses most of the Python/NumPy semantcs, and Fortran programming languages in the frontend to DaCe IR, and then optimizes the IR by passes/transformations, the DaCe IRs then used by the backend codegen to generate highly efficient C++ code for high-performance CPU, GPU, and FPGA hardware devices. 
