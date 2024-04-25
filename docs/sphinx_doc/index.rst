@@ -1,9 +1,8 @@
-NDSL documentation
+NDSL Documentation
 ==================
 
-NDSL is domain-specific language for scientific computing in Python, it supports most of the Python language semantics, with performance compartible as the native C and C++
-programming language.
-NDSL is the backend of pace model, which runs on a laptop using Python-based backend, and on thousands of heterogeneous compute nodes of a large supercomputer.
+NDSL is domain-specific language for scientific computing in Python, it supports most of the Python language semantics, with performance compartible as the native C and C++ programming language.
+NDSL has been used as the backend of Pace model (https://github.com/NOAA-GFDL/pace), which runs on a laptop using Python-based backend, and on thousands of heterogeneous compute nodes of a large supercomputer using C/C++ and Cuda/HiP backend.
 
 .. toctree::
    :maxdepth: 2
