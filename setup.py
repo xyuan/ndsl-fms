@@ -126,6 +126,8 @@ requirements: List[str] = [
     "h5netcdf",  # for xarray
     "dask",  # for xarray
     "cffi",
+    "recommonmark"   # for doc
+    "sphinx-rtd-theme", # for doc
 ]
 
 
