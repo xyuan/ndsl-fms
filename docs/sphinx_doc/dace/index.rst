@@ -1,23 +1,10 @@
 ============
-pace-physics
+Data Centric Parallel Programming (Dace)
 ============
 
-pace-physics includes the Python implementation of GFS physics built using the GT4Py domain-specific language.
-Currently, only GFDL cloud microphysics is integrated into Pace.
-Additional physics schemes (NOAH land surface, GFS sea ice, scale-aware mass-flux shallow convection, hybrid eddy-diffusivity mass-flux PBL and free atmospheric turbulence, and rapid radiative transfer model) have been ported indendepently and are available in the `physics-standalone`_ repository.
-Additional work is required to integrate these schemes.
+DaCe is a parallel programming framework developed at Scalable Parallel Computing Laboratory (SPCL), DaCe is a high level intermediate representation (IR) that parses most of the Python/NumPy semantcs, and Fortran programming languages in the frontend to DaCe IR, and then optimizes the IR by passes/transformations, the DaCe IRs then used by the backend codegen to generate highly efficient C++ code for high-performance CPU, GPU, and FPGA hardware devices. 
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+DaCe IR uses the Stateful Dataflow multiGraphs (SDFG) data-centric intermediate representation: A transformable, interactive representation of code based on data movement. Since the input code and the SDFG are separate, it is possible to optimize a program without changing its source, so that it stays readable. On the other hand, the used optimizations are customizable and user-extensible, so they can be written once and reused in many applications. With data-centric parallel programming, we enable direct knowledge transfer of performance optimization, regardless of the application or the target processor.
 
-   state
-   api
-
-Indices and tables
-------------------
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
-.. _physics-standalone: https://github.com/ai2cm/physics_standalone
+For more detailed document about DaCe, please refer to the following link:
+https://spcldace.readthedocs.io/en/latest/index.html
