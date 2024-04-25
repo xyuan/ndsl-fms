@@ -1,6 +1,6 @@
-============
-pace-physics
-============
+================================
+Gt4py (GridTools for Python)
+================================
 
 pace-physics includes the Python implementation of GFS physics built using the GT4Py domain-specific language.
 Currently, only GFDL cloud microphysics is integrated into Pace.
