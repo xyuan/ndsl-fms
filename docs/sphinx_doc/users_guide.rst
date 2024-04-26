@@ -14,3 +14,12 @@ The Python based NDSL programming model described in this users guide provides a
 The programming model of NDSL is composed of Execution Spaces, Execution Patterns, Execution Policies, Memory Spaces, Memory Layout and Memory Traits. These abstraction concepts allow the formulation of generic algorithms and data structures which can then be mapped to different types of architectures. Effectively, they allow for compile time transformation of algorithms to allow for adaptions of varying degrees of hardware parallelism as well as of the memory hierarchy.
 
 
+.. 1:
+
+.. figure:: static/ndsl_flow.png
+   :width: 300
+   :align: center
+
+   The High-level architecture of NDSL.
+
+
