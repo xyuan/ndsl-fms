@@ -22,3 +22,16 @@ The programming model of NDSL is composed of backend execution Spaces, optimizat
    The High-level architecture of NDSL.
 
 
+The original Python AST of the program is then transform to the Definition IR, the definition IR is high level IR, and composed of high level program information, domain-specific information, and the structure of computational operations. It allows to transform the IR while avoiding the performance
+cliffs of numerical libraries. Particularly, transformations preserve the ability to lower operations to hardware instructions implementing coarse-grained vector operations, or to numerical libraries — such as cuBLAS/hipBLAS and Intel MKL. 
+
+
+The definition IR is then transformed to GTIR, with wich the analysis is performed to remove the redunant nodes, and prunning the unused parameters, and data type and shape propogations of the symbols, and loop extensions. 
+
+Code generation approaches for numerical computing have traditionally focused on optimizing the performance of loop nests. Associated analyses focus on scalar elements as the body of a loop nest typically computes a single element. Such analyses must consider memory dependences and
+aliasing. These approaches have been deeply researched in the past [1] and have reached a high 4 Vasilache et al. level of maturity. They are well-suited when starting from an input language like C or Fortran where the problem is already specified in terms of loops over data residing in pre-allocated memory.
+When focusing on a specific domain (e.g. the ML space), we have the luxury of programs defined at a much higher level of abstraction than loops. This opens up the opportunity to revisit classical loop optimizations like fusion, tiling or vectorization without the need for complicated analysis
+and heuristics. Advantages include reduced complexity and maintenance cost while also scaling naturally to extensions like sparse tensors, that are even more difficult to analyze at the loop level. It makes it possible to avoid raising information from lower level representations by means
+of static analysis, where feasible, and performing optimizations at the highest possible level of abstraction. We refer to this approach as structured code generation since the compiler primarily leverages structural information readily available in the source code. Figure 1 shows a coarse-grained
+summary structure of the steps and levels of abstraction involved. The starting point (Structured IR) is composed of tensor algebra operations, organized as a functional program over dense and sparse tensors.
+
