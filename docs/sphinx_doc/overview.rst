@@ -20,7 +20,7 @@ NDSL uses pytest for its unit tests, the tests are available via:
 
 
 Requirements & supported compilers
-----------------------
+-------------------------------------
 
 For CPU backends:
 
