@@ -17,7 +17,7 @@ The programming model of NDSL is composed of Execution Spaces, Execution Pattern
 .. 1:
 
 .. figure:: static/ndsl_flow.png
-   :width: 600
+   :width: 800
    :align: center
 
    The High-level architecture of NDSL.
