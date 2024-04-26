@@ -4,16 +4,16 @@ Overview
 
 Quick Start
 ------------
-Recommended Python is `3.11.x` all other dependencies will be pulled during install.
+Python `3.11.x` is required for NDSL and all its third party dependencies for installation.
 
-NDSL submodules `gt4py` and `dace` to point to vetted versions, use `git clone --recurse-submodule`.
+NDSL submodules `gt4py` and `dace` to point to vetted versions, use `git clone --recurse-submodule` to update the git submodules.
 
 NDSL is __NOT__ available on `pypi`. Installation of the package has to be local, via `pip install ./NDSL` (`-e` supported). The packages has a few options:
 
 - `ndsl[test]`: installs the test packages (based on `pytest`)
 - `ndsl[develop]`: installs tools for development and tests.
 
-Tests are available via:
+NDSL uses pytest for its unit tests, the tests are available via:
 
 - `pytest -x test`: running CPU serial tests (GPU as well if `cupy` is installed)
 - `mpirun -np 6 pytest -x test/mpi`: running CPU parallel tests (GPU as well if `cupy` is installed)
@@ -40,7 +40,7 @@ For GPU backends (the above plus):
 Configurations for Pace
 ----------------------------
 
-Pace uses the following configurations for choice of NDSL
+Configurations for Pace to use NDSL with different backend:
 
 - FV3_DACEMODE=Python[Build|BuildAndRun|Run] controls the full program optimizer behavior
 
@@ -55,51 +55,48 @@ Pace uses the following configurations for choice of NDSL
 - PACE_FLOAT_PRECISION=64 control the floating point precision throughout the program.
 
 
-.. highlight:: shell
+- Install Pace with different NDSL backend:
 
-Installation
--------------------------
+  - Shell scripts to install NDSL on specific machines such as Gaea can be found in `examples/build_scripts/`.
 
-Shell scripts to install NDSL on specific machines such as Gaea can be found in `examples/build_scripts/`.
+  - When cloning Pace you will need to update the repository's submodules as well:
 
-When cloning Pace you will need to update the repository's submodules as well:
+  .. code-block:: console
 
-.. code-block:: console
+      $ git clone --recursive https://github.com/ai2cm/pace.git
 
-    $ git clone --recursive https://github.com/ai2cm/pace.git
+  or if you have already cloned the repository:
 
-or if you have already cloned the repository:
+  .. code-block:: console
 
-.. code-block:: console
-
-    $ git submodule update --init --recursive
+      $ git submodule update --init --recursive
 
 
-Pace requires GCC > 9.2, MPI, and Python 3.8 on your system, and CUDA is required to run with a GPU backend.
-You will also need the headers of the boost libraries in your `$PATH` (boost itself does not need to be installed).
-If installed outside the standard header locations, gt4py requires that `$BOOST_ROOT` be set:
+  - Pace requires GCC > 9.2, MPI, and Python 3.8 on your system, and CUDA is required to run with a GPU backend.
+  You will also need the headers of the boost libraries in your `$PATH` (boost itself does not need to be installed).
+  If installed outside the standard header locations, gt4py requires that `$BOOST_ROOT` be set:
 
-.. code-block:: console
+  .. code-block:: console
 
-    $ cd BOOST/ROOT
-    $ wget https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.gz
-    $ tar -xzf boost_1_79_0.tar.gz
-    $ mkdir -p boost_1_79_0/include
-    $ mv boost_1_79_0/boost boost_1_79_0/include/
-    $ export BOOST_ROOT=BOOST/ROOT/boost_1_79_0
+      $ cd BOOST/ROOT
+      $ wget https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.gz
+      $ tar -xzf boost_1_79_0.tar.gz
+      $ mkdir -p boost_1_79_0/include
+      $ mv boost_1_79_0/boost boost_1_79_0/include/
+      $ export BOOST_ROOT=BOOST/ROOT/boost_1_79_0
 
 
-We recommend creating a python `venv` or conda environment specifically for Pace.
+  - We recommend creating a python `venv` or conda environment specifically for Pace.
 
-.. code-block:: console
+  .. code-block:: console
 
-    $ python3 -m venv venv_name
-    $ source venv_name/bin/activate
+      $ python3 -m venv venv_name
+      $ source venv_name/bin/activate
 
-Inside of your pace `venv` or conda environment pip install the Python requirements, GT4Py, and Pace:
+  - Inside of your pace `venv` or conda environment pip install the Python requirements, GT4Py, and Pace:
 
-.. code-block:: console
+  .. code-block:: console
 
-    $ pip3 install -r requirements_dev.txt -c constraints.txt
+      $ pip3 install -r requirements_dev.txt -c constraints.txt
 
-There are also separate requirements files which can be installed for linting (`requirements_lint.txt`) and building documentation (`requirements_docs.txt`).
+  - There are also separate requirements files which can be installed for linting (`requirements_lint.txt`) and building documentation   (`requirements_docs.txt`).
