@@ -59,7 +59,7 @@ Configurations for Pace to use NDSL with different backend:
 
 Install Pace with different NDSL backend:
 
-  - Shell scripts to install NDSL on specific machines such as Gaea can be found in `examples/build_scripts/`.
+  - Shell scripts to install Pace using NDSL backend on specific machines such as Gaea can be found in `examples/build_scripts/`.
 
   - When cloning Pace you will need to update the repository's submodules as well:
 
