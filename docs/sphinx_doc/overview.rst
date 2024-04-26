@@ -18,6 +18,7 @@ NDSL uses pytest for its unit tests, the tests are available via:
 - `pytest -x test`: running CPU serial tests (GPU as well if `cupy` is installed)
 - `mpirun -np 6 pytest -x test/mpi`: running CPU parallel tests (GPU as well if `cupy` is installed)
 
+
 Requirements & supported compilers
 ----------------------
 
@@ -37,6 +38,7 @@ For GPU backends (the above plus):
 - Libraries:
   - MPI compiled with cuda support
 
+
 Configurations for Pace
 ----------------------------
 
@@ -55,7 +57,7 @@ Configurations for Pace to use NDSL with different backend:
 - PACE_FLOAT_PRECISION=64 control the floating point precision throughout the program.
 
 
-- Install Pace with different NDSL backend:
+Install Pace with different NDSL backend:
 
   - Shell scripts to install NDSL on specific machines such as Gaea can be found in `examples/build_scripts/`.
 
