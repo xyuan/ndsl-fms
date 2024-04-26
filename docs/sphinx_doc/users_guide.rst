@@ -1,7 +1,7 @@
 Users Guide
 =============
 
-How to accelerate Python code by 100x using NDSL
+Introduction
 ----------------------------------------------------
 Python has became the dominant programming language in machine learning and data sciences community because it is easy to learn and program, however the performance of Python is still the major concern in scientific computing and HPC community. In scientific computing and HPC community, the most widely used programming language is C/C++ and Fortran, Python is often used as script language for pre- and post-processing. Although, many complains about Python program performance happens from time to time, and obviously, Python program community didn't take it for the standard consideration. 
 
