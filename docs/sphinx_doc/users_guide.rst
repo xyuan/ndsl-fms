@@ -21,17 +21,16 @@ The programming model of NDSL is composed of backend execution Spaces, optimizat
 
    The High-level architecture of NDSL.
 
+From Fig. 1, we know that NDSL uses hierarchy levels intermediate representation (IR) to abstract the structure of computational program, whcih reduces the complexity of application program, and maintenance cost, while the code portability and scalability are increased. It also avoids raising the information from lower level representations by means of static analysis, and memory leaking, where feasible, and performaing optimizations at the high possible level of abstraction. The methods primarily leverages structural information readily available in the source code, it enables to apply the optimization, such as loop fusion, tiling and vectorization without the need for complicated analysis and heuristics.
 
-The original Python AST of the program is then transform to the Definition IR, the definition IR is high level IR, and composed of high level program information, domain-specific information, and the structure of computational operations. It allows to transform the IR while avoiding the performance
-cliffs of numerical libraries. Particularly, transformations preserve the ability to lower operations to hardware instructions implementing coarse-grained vector operations, or to numerical libraries — such as cuBLAS/hipBLAS and Intel MKL. 
+In NDSL, the original Python AST of the program is then transform to the Definition IR, the definition IR is high level IR, and composed of high level program information, domain-specific information, and the structure of computational operations. It allows to transform the IR while avoiding the performance cliffs of numerical libraries, but it doesn't contains detailed information that required for performance on specific hardware. The definition IR, particularly, only preserve the necessary information to lower operations to hardware instructions implementing coarse-grained vector operations, or to numerical libraries — such as cuBLAS/hipBLAS and Intel MKL. 
 
 
-The definition IR is then transformed to GTIR, with wich the analysis is performed to remove the redunant nodes, and prunning the unused parameters, and data type and shape propogations of the symbols, and loop extensions. 
+The definition IR is then transformed to GTIR, which is used for backend for code generator for GridTools. The analysis is also performed on the GTIR to remove the redunant nodes, and prunning the unused parameters, and data type and shape propogations of the symbols, and loop extensions. 
 
-Code generation approaches for numerical computing have traditionally focused on optimizing the performance of loop nests. Associated analyses focus on scalar elements as the body of a loop nest typically computes a single element. Such analyses must consider memory dependences and
-aliasing. These approaches have been deeply researched in the past [1] and have reached a high 4 Vasilache et al. level of maturity. They are well-suited when starting from an input language like C or Fortran where the problem is already specified in terms of loops over data residing in pre-allocated memory.
-When focusing on a specific domain (e.g. the ML space), we have the luxury of programs defined at a much higher level of abstraction than loops. This opens up the opportunity to revisit classical loop optimizations like fusion, tiling or vectorization without the need for complicated analysis
-and heuristics. Advantages include reduced complexity and maintenance cost while also scaling naturally to extensions like sparse tensors, that are even more difficult to analyze at the loop level. It makes it possible to avoid raising information from lower level representations by means
-of static analysis, where feasible, and performing optimizations at the highest possible level of abstraction. We refer to this approach as structured code generation since the compiler primarily leverages structural information readily available in the source code. Figure 1 shows a coarse-grained
-summary structure of the steps and levels of abstraction involved. The starting point (Structured IR) is composed of tensor algebra operations, organized as a functional program over dense and sparse tensors.
+
+The GTIR is then transoformed to optimization IR (OIR), performation optimization algorithm are carried out based on OIR by developing pass/transorformations. Currently, the vertical loop merging, and horizonal loop mergy, and loop unrolling and vectorization, statement fusion and pruning optimizations are available and activated by the environmental variable in the oir_pipeline module. 
+
+
+After the optimization pipeline finished, the OIR is then converted to different backend IR, for example, DACE IR (SDFG). The DACE SDFG can be further optimizated by its embeded pass/transormations algorithm, but in PACE application, we didn't activate this optimization step. 
 
