@@ -29,20 +29,20 @@ The definition IR is then transformed to GTIR (gt4py/src/gt4py/cartesian/fronten
 
 .. code-block:: none
 
-class Stencil(LocNode, eve.ValidatedSymbolTableTrait):
-    name: str
-    api_signature: List[Argument]
-    params: List[Decl]
-    vertical_loops: List[VerticalLoop]
-    externals: Dict[str, Literal]
-    sources: Dict[str, str]
-    docstring: str
+   class Stencil(LocNode, eve.ValidatedSymbolTableTrait):
+       name: str
+       api_signature: List[Argument]
+       params: List[Decl]
+       vertical_loops: List[VerticalLoop]
+       externals: Dict[str, Literal]
+       sources: Dict[str, str]
+       docstring: str
 
-    @property
-    def param_names(self) -> List[str]:
-        return [p.name for p in self.params]
+       @property
+       def param_names(self) -> List[str]:
+           return [p.name for p in self.params]
 
-    _validate_lvalue_dims = common.validate_lvalue_dims(VerticalLoop, FieldDecl)
+       _validate_lvalue_dims = common.validate_lvalue_dims(VerticalLoop, FieldDecl)
 
 
 
