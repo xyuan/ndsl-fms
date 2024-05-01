@@ -27,7 +27,7 @@ In NDSL, the AST visitor (the NDSL/external/gt4py/src/gt4py/cartesian/frontend/g
 
 The definition IR is then transformed to GTIR (gt4py/src/gt4py/cartesian/frontend/defir_to_gtir.py), the GTIR stencils is defined as in NDSL
 
-.. code-block : none
+.. code-block:: none
 
 class Stencil(LocNode, eve.ValidatedSymbolTableTrait):
     name: str
@@ -43,6 +43,8 @@ class Stencil(LocNode, eve.ValidatedSymbolTableTrait):
         return [p.name for p in self.params]
 
     _validate_lvalue_dims = common.validate_lvalue_dims(VerticalLoop, FieldDecl)
+
+
 
 GTIR contains `vertical_loops` loop statement, in the climate applications, the vertical loops usually need special treatment as the numerical unstability is arison. The `vertical_loops` in GTIR as separate code block help the following performance pass and transofrmation implementation. The program analysis pass/transformation is performed on the GTIR to remove the redunant nodes, and prunning the unused parameters, and data type and shape propogations of the symbols, and loop extensions. GTIR is also used for backend code generation if the gridtools backend is chosen.
 
