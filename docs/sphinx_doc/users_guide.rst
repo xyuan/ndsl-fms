@@ -49,7 +49,23 @@ The definition IR is then transformed to GTIR (gt4py/src/gt4py/cartesian/fronten
 GTIR contains `vertical_loops` loop statement, in the climate applications, the vertical loops usually need special treatment as the numerical unstability is arison. The `vertical_loops` in GTIR as separate code block help the following performance pass and transofrmation implementation. The program analysis pass/transformation is performed on the GTIR to remove the redunant nodes, and prunning the unused parameters, and data type and shape propogations of the symbols, and loop extensions. GTIR is also used for backend code generation if the gridtools backend is chosen.
 
 
-The GTIR is then transoformed to optimization IR (OIR), performation optimization algorithm are carried out based on OIR by developing pass/transorformations. Currently, the vertical loop merging, and horizonal loop mergy, and loop unrolling and vectorization, statement fusion and pruning optimizations are available and activated by the environmental variable in the oir_pipeline module. 
+When using Dace backend, the GTIR is then further lowered to optimization IR (OIR), which is defined as
+
+
+.. code-block:: none
+
+   class Stencil(LocNode, eve.ValidatedSymbolTableTrait):
+       name: str
+       # TODO: fix to be List[Union[ScalarDecl, FieldDecl]]
+       params: List[Decl]
+       vertical_loops: List[VerticalLoop]
+       declarations: List[Temporary]
+
+       _validate_dtype_is_set = common.validate_dtype_is_set()
+       _validate_lvalue_dims = common.validate_lvalue_dims(VerticalLoop, FieldDecl)
+
+
+performation optimization algorithm are carried out based on OIR by developing pass/transorformations. Currently, the vertical loop merging, and horizonal loop mergy, and loop unrolling and vectorization, statement fusion and pruning optimizations are available and activated by the environmental variable in the oir_pipeline module. 
 
 
 After the optimization pipeline finished, the OIR is then converted to different backend IR, for example, DACE IR (SDFG). The DACE SDFG can be further optimizated by its embeded pass/transormations algorithm, but in PACE application, we didn't activate this optimization step. 
