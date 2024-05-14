@@ -73,4 +73,35 @@ After the optimization pipeline finished, the OIR is then converted to different
 When using GT backend, the OIR is then directly used by the `gt4py` code generator to generate the C++ gridtool stencils (computation code), and the python binding code. In this backend, each `horizontal execution` node will be passed to and generate a seperate gridtool stencil. 
 
 
+NDSL also supports the whole program optimization model, this is called orchestration model in NDSL, currently it only supports DaCe backend. Whole program optimziation with DaCe is the process of turning all Python and GT4Py code in generated C++. Only _orchestrate_ the runtime code of the model is applied, e.g. everything in the `__call__` method of the module and all code in `__init__` is executed like a normal GT backend.
+
+At the highest level in Pace, to turn on orchestration you need to flip the `FV3_DACEMODE` to an orchestrated options _and_ run a `dace:*` backend (it will error out if run anything else). Option for `FV3_DACEMODE` are:
+
+- _Python_: default, turns orchestration off.
+- _Build_: build the SDFG then exit without running. See Build for limitation of build strategy.
+- _BuildAndRun_: as above, but distribute the build and run.
+- _Run_: tries to execute, errors out if the cache don't exists.
+
+Code is orchestrated two ways:
+
+- functions are orchestrated via `orchestrate_function` decorator,
+- methods are orchestrate via the `orchestrate` function (e.g. `pace.driver.Driver._critical_path_step_all`)
+
+The later is the way we orchestrate in our model. `orchestrate` is often called as the first function in the `__init__`. It patches _in place_ the methods and replace them with a wrapper that will deal with turning it all into executable SDFG when call time comes.
+
+The orchestration has two parameters: config (will expand later) and `dace_compiletime_args`.
+
+DaCe needs to be described all memory so it can interface it in the C code that will be executed. Some memory is automatically parsed (e.g. numpy, cupy, scalars) and others need description. In our case `Quantity` and others need to be flag as `dace.compiletime` which tells DaCe to not try to AOT the memory and wait for JIT time. The `dace_compiletime_args` helps with tagging those without having to change the type hint.
+
+Figure 2 shows the hierarchy levels of intermediate representations (IR) and the lowing process when orchestration option is activated. 
+
+.. 1:
+
+.. figure:: static/ndsl_flow.png
+   :width: 860
+   :align: center
+
+   The High-level architecture of NDSL (note this is the wrong figure here, need to be replaced by a correct image).
+
+
 
