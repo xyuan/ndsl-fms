@@ -112,6 +112,9 @@ When the orchestrated option is turned on, the call method object is patched in 
 One of the major features of NDSL is that users can develop a new pass/transformation for the backend with new hardware, the passes and/or transformations are the key integrates in order to have good performance on the new hardware. In different abstract level, the passes and/or transformations perform different levels of optimization. For example, the loop level of optimization is independent of hardware, and can be applied to any backend, while the optimization of device placement, and memory and caches optimizations are dependent on different backend and hardware. In this section, we only focused on the optimizations that are independent of the backend hardware.
 
 
+The general procedure of code optimization has two steps, in the first step, a filter function is called to find the pattern that need to apply the pass and/or transformation, then apply the pass and/or transoformation to the filtered pattern to insert or delte or replace the existing node with the optimizated node. In NDSL, the following passes and/transorformations are provided. 
+
+
    3.1: Prune Unused Parameters
    -----------------------------------------
 
