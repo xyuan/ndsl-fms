@@ -109,7 +109,11 @@ When the orchestrated option is turned on, the call method object is patched in 
 
 3: Analysis and Optimization
 ----------------------------------------------------
-One of the major features of NDSL is that users can develop a new pass/transformation for the backend with new hardware, the pass and/or transformation is the 
+One of the major features of NDSL is that users can develop a new pass/transformation for the backend with new hardware, the passes and/or transformations are the key integrates in order to have good performance on the new hardware. In different abstract level, the passes and/or transformations perform different levels of optimization. For example, the loop level of optimization is independent of hardware, and can be applied to any backend, while the optimization of device placement, and memory and caches optimizations are dependent on different backend and hardware. In this section, we only focused on the optimizations that are independent of the backend hardware.
+
+
+
+
 
 
 
