@@ -118,18 +118,18 @@ The general procedure of code optimization has two steps, in the first step, a f
    3.1: Prune Unused Parameters
    -----------------------------------------
 
-.. code-block: none
-def prune_unused_parameters(node: gtir.Stencil) -> gtir.Stencil:
-    assert isinstance(node, gtir.Stencil)
-    used_variables = (
-        node.walk_values()
-        .if_isinstance(gtir.FieldAccess, gtir.ScalarAccess)
-        .getattr("name")
-        .to_list()
-    )
-    used_params = list(filter(lambda param: param.name in used_variables, node.params))
-    return node.copy(update={"params": used_params})
+   .. code-block:: none
 
+      def prune_unused_parameters(node: gtir.Stencil) -> gtir.Stencil:
+            assert isinstance(node, gtir.Stencil)
+            used_variables = (
+              node.walk_values()
+              .if_isinstance(gtir.FieldAccess, gtir.ScalarAccess)
+              .getattr("name")
+              .to_list()
+            )
+            used_params = list(filter(lambda param: param.name in used_variables, node.params))
+            return node.copy(update={"params": used_params})
 
 
    3.2: Dead Node Removal
