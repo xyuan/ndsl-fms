@@ -123,6 +123,21 @@ One of the major features of NDSL is that users can develop a new pass/transform
    ------------------------------------
 
 
+   3.3: Function Inlining
+   ------------------------------------
+
+   3.4: Vertical Loop Merging
+   ------------------------------------
+
+   3.5: Horizontal Execution Loop Merging
+   ----------------------------------------------
+
+   3.6: Cache Optimization
+   ------------------------------------
+
+   3.8: Pruning
+   ------------------------------------
+
 
 4: Code Generators
 ----------------------------------------------------
