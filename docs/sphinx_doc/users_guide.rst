@@ -103,5 +103,8 @@ Figure 2 shows the hierarchy levels of intermediate representations (IR) and the
 
    The High-level architecture of NDSL (note this is the wrong figure here, need to be replaced by a correct image).
 
+    When the orchestrated option is turned on, the call method object is patched in place, replacing the orignal Callable with a wrapper that will trigger orchestration at call time. If the model configuration doesn't demand orchestration, this won't do anything. 
+
+
 
 
