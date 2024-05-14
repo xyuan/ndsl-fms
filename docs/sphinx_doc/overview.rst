@@ -39,6 +39,28 @@ For GPU backends (the above plus):
   - MPI compiled with cuda support
 
 
+NDSL installation and testing
+-------------------------------------
+
+NDSL is not available at `pypi`, it uses
+
+  .. code-block:: console
+
+      pip install NDSL
+
+to install NDSL locally.
+
+NDSL has a few options:
+
+- `ndsl[test]`: installs the test packages (based on `pytest`)
+- `ndsl[develop]`: installs tools for development and tests.
+
+Tests are available via:
+
+- `pytest -x test`: running CPU serial tests (GPU as well if `cupy` is installed)
+- `mpirun -np 6 pytest -x test/mpi`: running CPU parallel tests (GPU as well if `cupy` is installed)
+
+
 Configurations for Pace
 ----------------------------
 
