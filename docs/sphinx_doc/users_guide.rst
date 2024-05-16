@@ -13,13 +13,13 @@ The Python based NDSL programming model described in this users guide provides a
 ----------------------------------------------------
 The programming model of NDSL is composed of backend execution spaces, performance optimization pass and transformations, and memory spaces, memory layout. These abstraction semantics allow the formulation of generic algorithms and data structures which can then be mapped to different types of hardware architectures. Effectively, they allow for compile time transformation of algorithms to allow for adaptions of varying degrees of hardware parallelism as well as of the memory hierarchy. Figure 1 shows the high level architecture of NDSL (without orchestration option), From Fig. 1, it is shown that NDSL uses hierarchy levels intermediate representation (IR) to abstract the structure of computational program, whcih reduces the complexity of application code, and maintenance cost, while the code portability and scalability are increased. This method also avoids raising the information from lower level representations by means of static analysis, and memory leaking, where feasible, and performaing optimizations at the high possible level of abstraction. The methods primarily leverages structural information readily available in the source code, it enables to apply the optimization, such as loop fusion, tiling and vectorization without the need for complicated analysis and heuristics.
 
-.. 1:
+.. Figure 1:
 
 .. figure:: static/ndsl_flow.png
    :width: 860
    :align: center
 
-   Figure 1: the high-level architecture of NDSL stencil life cycle for non-orchestration run.
+   the high-level architecture of NDSL stencil life cycle for non-orchestration run.
 
 
 
@@ -96,13 +96,13 @@ DaCe needs to be described all memory so it can interface it in the C code that 
 
 Figure 2 shows the hierarchy levels of intermediate representations (IR) and the lowing process when orchestration option is activated. 
 
-.. 2:
+.. Figure 2:
 
 .. figure:: static/ndsl_orchestration.png
    :width: 860
    :align: center
 
-   Figure 2: the high-level architecture of NDSL stencil life cycle for orchestration run.
+   the high-level architecture of NDSL stencil life cycle for orchestration run.
 
 
 
