@@ -97,7 +97,7 @@ Figure 2 shows the hierarchy levels of intermediate representations (IR) and the
 
 .. 2:
 
-.. figure:: static/ndsl_flow.png
+.. figure:: static/ndsl_orchestration.png
    :width: 860
    :align: center
 
