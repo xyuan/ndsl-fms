@@ -19,7 +19,7 @@ The programming model of NDSL is composed of backend execution spaces, performan
    :width: 860
    :align: center
 
-   The high-level architecture of NDSL stencil life cycle for non-orchestration run.
+   Figure 1: the high-level architecture of NDSL stencil life cycle for non-orchestration run.
 
 
 
@@ -102,7 +102,7 @@ Figure 2 shows the hierarchy levels of intermediate representations (IR) and the
    :width: 860
    :align: center
 
-   The high-level architecture of NDSL stencil life cycle for orchestration run.
+   Figure 2: the high-level architecture of NDSL stencil life cycle for orchestration run.
 
 
 
